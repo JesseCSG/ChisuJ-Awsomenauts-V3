@@ -6,8 +6,10 @@
             <file>file:/C:/xampp/htdocs/ChisuJAwesomenauts/js/screens/play.js</file>
             <file>file:/C:/xampp/htdocs/ChisuJAwesomenauts/js/resources.js</file>
             <file>file:/C:/xampp/htdocs/ChisuJAwesomenauts/js/game.js</file>
-            <file>file:/C:/xampp/htdocs/ChisuJAwesomenauts/data/img/orcSpear.png</file>
+            <file>file:/C:/xampp/htdocs/ChisuJAwesomenauts/js/entities/EnemyCreep.js</file>
             <file>file:/C:/xampp/htdocs/ChisuJAwesomenauts/js/entities/entities.js</file>
+            <file>file:/C:/xampp/htdocs/ChisuJAwesomenauts/index.php</file>
+            <file>file:/C:/xampp/htdocs/ChisuJAwesomenauts/js/screens/title.js</file>
         </group>
     </open-files>
 </project-private>
