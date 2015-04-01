@@ -181,7 +181,6 @@ game.PlayerEntity = me.Entity.extend({
     collideWithEnemyCreep: function(response) {
         var xdif = this.pos.x - response.b.pos.x;
         var ydif = this.pos.y - response.b.pos.y;
-        console.log("booya");
 
         this.stopMovement(xdif);
 
