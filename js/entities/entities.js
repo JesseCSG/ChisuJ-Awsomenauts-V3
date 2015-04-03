@@ -153,7 +153,7 @@ game.PlayerEntity = me.Entity.extend({
     
     collideHandler: function(response) {
         if (response.b.type === 'EnemyBaseEntity') {
-            this.collisionWithEnemyBase(response);
+            this.collideWithEnemyBase(response);
         } else if (response.b.type === "EnemyCreep") {
             this.collideWithEnemyCreep(response);
         }
