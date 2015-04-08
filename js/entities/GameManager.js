@@ -15,7 +15,7 @@ game.GameTimerManager = Object.extend({
     
     goldTimerCheck: function() {
         if (Math.round(this.now / 1000) %20 === 0 && (this.now - this.lastCreep >= 1000)) {
-            game.data.gold += 1;
+            game.data.gold += (game.data.exp1+1);
         }
     },
     
@@ -64,5 +64,23 @@ game.ExperienceManager = Object.extend({
         }        
             this.gameOver = true;
             me.save.exp = game.data.exp;
+    }
+});
+
+game.SpendGold = Object.extend({
+    init: function(x, y, settings) {
+        this.now = new Date().getTime();
+        this.lastBuy = new Date().getTime();
+        this.paused = false;
+        this.alwaysUpdate = true;
+        this.updateWhenPaused = true;
+    },
+    
+    update: function() {
+        this.now = new Date().getTime();
+        if(me.input.isKeyPressed("buy")) {
+            
+        }
+        return true;
     }
 });

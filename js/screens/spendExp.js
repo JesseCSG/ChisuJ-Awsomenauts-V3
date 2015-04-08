@@ -6,16 +6,15 @@ game.SpendExp = me.ScreenObject.extend({
 	onResetEvent: function() {	
 		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage("exp-screen")), -10);
                 
-                me.input.bindKey(me.inout.KEY.F1, "F1");
-                me.input.bindKey(me.inout.KEY.F2, "F2");
-                me.input.bindKey(me.inout.KEY.F3, "F3");
-                me.input.bindKey(me.inout.KEY.F4, "F4");
-                me.input.bindKey(me.inout.KEY.F5, "F5");
+                me.input.bindKey(me.input.KEY.F1, "F1");
+                me.input.bindKey(me.input.KEY.F2, "F2");
+                me.input.bindKey(me.input.KEY.F3, "F3");
+                me.input.bindKey(me.input.KEY.F4, "F4");
+                me.input.bindKey(me.input.KEY.F5, "F5");
                 var exp1cost = ((game.data.exp1 + 1) * 5);
                 var exp2cost = ((game.data.exp2 + 2) * 3);
                 var exp3cost = ((game.data.exp3 + 2) * 4);
-                var exp4cost = ((game.data.exp4 + 1) * 8)
-
+                var exp4cost = ((game.data.exp4 + 1) * 8);
 
                 me.game.world.addChild(new (me.Renderable.extend({
                     init: function() {
@@ -68,11 +67,11 @@ game.SpendExp = me.ScreenObject.extend({
 	 *  action to perform when leaving this screen (state change)
 	 */
 	onDestroyEvent: function() {
-                me.input.unbindKey(me.inout.KEY.F1, "F1");
-                me.input.unbindKey(me.inout.KEY.F2, "F2");
-                me.input.unbindKey(me.inout.KEY.F3, "F3");
-                me.input.unbindKey(me.inout.KEY.F4, "F4");
-                me.input.unbindKey(me.inout.KEY.F5, "F5");
+                me.input.unbindKey(me.input.KEY.F1, "F1");
+                me.input.unbindKey(me.input.KEY.F2, "F2");
+                me.input.unbindKey(me.input.KEY.F3, "F3");
+                me.input.unbindKey(me.input.KEY.F4, "F4");
+                me.input.unbindKey(me.input.KEY.F5, "F5");
                 me.event.unsubscribe(this.handeler);
 	}
 });
