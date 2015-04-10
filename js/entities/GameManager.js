@@ -105,18 +105,19 @@ game.SpendGold = Object.extend({
     setBuyText: function() {
         game.data.buytext = new (me.Renderable.extend({
             init: function() {
-                this._super(me.Renderable, 'init', [10, 10, 300, 50]);
+                this._super(me.Renderable, 'init', [game.data.pausePos.x, game.data.pausePos.y, 300, 50]);
                 this.font = new me.Font('Times New Roman', 26, 'white');
                 this.updateWhenPaused = true;
                 this.alwaysUpdate = true;
             },
             draw: function(renderer) {
-                this.font.draw(renderer.getContext(), "Press F1-F6 to SELECT, and B to EXIT", this.pos.x, this.pos.y + 60);
-                this.font.draw(renderer.getContext(), "Press F1-F6 to SELECT, and B to EXIT", this.pos.x + 40, this.pos.y + 20);
-                this.font.draw(renderer.getContext(), "Press F1-F6 to SELECT, and B to EXIT", this.pos.x + 80, this.pos.y + 20);
-                this.font.draw(renderer.getContext(), "Press F1-F6 to SELECT, and B to EXIT", this.pos.x + 120, this.pos.y + 20);
-                this.font.draw(renderer.getContext(), "Press F1-F6 to SELECT, and B to EXIT", this.pos.x + 160, this.pos.y + 20);
-                this.font.draw(renderer.getContext(), "Press F1-F6 to SELECT, and B to EXIT", this.pos.x + 200, this.pos.y + 20);
+                this.font.draw(renderer.getContext(), "Press F1-F6 to SELECT, and B to EXIT. Current Gold: " + game.data.gold, this.pos.x, this.pos.y);
+                this.font.draw(renderer.getContext(), "Skill 1: Increase Health. Current Level: " + game.data.skill1 + " Cost: " + ((game.data.skill +1) *10), this.pos.x + 40, this.pos.y + 40);
+                this.font.draw(renderer.getContext(), "Skill 2: More Speed. Current Level: " + game.data.skill2 + " Cost: " + ((game.data.skill2 +1) *10), this.pos.x + 40, this.pos.y + 70);
+                this.font.draw(renderer.getContext(), "Skill 3: Increase Damage. Current Level:  " + game.data.skill3 + " Cost: " + ((game.data.skill3 +1) *10), this.pos.x + 40, this.pos.y + 100);
+                this.font.draw(renderer.getContext(), "S Ability: Short Sprint! Current Level: " + game.data.ability1 + " Cost: " + ((game.data.ability1 +1) *10), this.pos.x + 40, this.pos.y + 130);
+                this.font.draw(renderer.getContext(), "D Ability: Carnivore Bite! Current Level: " + game.data.ability2 + " Cost: " + ((game.data.ability2 +1) *10), this.pos.x + 40, this.pos.y + 160);
+                this.font.draw(renderer.getContext(), "F Ability: Spear Toss! Current Level: " + game.data.ability3 + " Cost: " + ((game.data.ability3 +1) *10), this.pos.x + 40, this.pos.y + 190);
 
             }
         }));

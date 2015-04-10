@@ -30,6 +30,10 @@ game.SpendExp = me.ScreenObject.extend({
                         this.font.draw(renderer.getContext(), "F3: Increase ATTACK DAMAGE- Current Level: "  + game.data.exp3.toString() + " Cost: " + ((game.data.exp3 + 2) * 4), this.pos.x, this.pos.y + 200);
                         this.font.draw(renderer.getContext(), "F4: Increase HEALTH- Current Level: "  + game.data.exp4.toString() + " Cost: " + ((game.data.exp4 + 1) * 8), this.pos.x, this.pos.y + 250);
 
+                    },
+                    
+                    update: function() {
+                        return true;
                     }
                 })));
                 
