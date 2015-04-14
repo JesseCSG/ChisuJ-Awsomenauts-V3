@@ -188,6 +188,7 @@ game.PlayerEntity = me.Entity.extend({
             this.hitCreep(response);
         };
     },
+    
     stopMovement: function(xdif) {
         if (xdif > 0) {
             if (this.facing === "left") {
