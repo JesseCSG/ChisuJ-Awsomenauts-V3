@@ -10,18 +10,14 @@
     $query = $_SESSION["connection"]->query("CREATE TABLE posts ("
             . "id int(11) NOT NULL AUTO_INCREMENT,"
             . "title varchar(255) NOT NULL,"
+            . "exp int(4),"
+            . "exp1 int(4),"
+            . "exp2 int(4),"
+            . "exp3 int(4),"
+            . "exp4 int(4),"
             . "post text NOT NULL,"
-            . "PRIMARY KEY (id))");
-    
-//* If $query is true, echo out 'Successfully created table: posts'
-    if($query) {
-        echo "<p>Successfully created table: posts</p>";
-    }
-//* If $query is false, then echo out that an error has occurd and show the error.
-    else{
-        echo "<p>" . $_SESSION["connection"]->error . "</p>";
-    }
-    
+            . "PRIMARY KEY (id))");   
+   
 //* Makes connection to $query and creates a new table 'users' to be saved to phpMyAdmin.
     $query = $_SESSION["connection"]->query("CREATE TABLE users ("
              . "id int(11) NOT NULL AUTO_INCREMENT,"
@@ -31,14 +27,6 @@
              . "salt char(128) NOT NULL,"
              . "PRIMARY KEY (id))");
     
-//* If the $query is true, then echo out 'Successfully created table: users'.
-    if($query) {
-        echo "<p>Successfully created table: users</p>";
-    }
-//* If $query is false, then echo out thatan error has occured and show the error.
-    else{
-        echo "<p>" . $_SESSION["connection"]->error . "</p>";
-    }
     ?>
 </div>
     

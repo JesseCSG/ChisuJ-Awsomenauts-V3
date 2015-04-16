@@ -32,6 +32,7 @@
             $array["exp2"] = $row["exp2"];
             $array["exp3"] = $row["exp3"];
             $array["exp4"] = $row["exp4"];
+            $_SESSION["name"] = $username;
             
             echo json_encode($array);
         //* If the password doesn't equal crypt's password and salt, then echo out 'Login invalid: Invalid username and password'.
