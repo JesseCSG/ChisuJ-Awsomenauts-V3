@@ -62,6 +62,8 @@ game.PlayerEntity = me.Entity.extend({
         this.dead = this.checkIfDead();
 
         this.checkKeyPressesAndMoves();
+        
+        this.checkAbilityKeys();
 
         this.setAnimation();
 
@@ -125,6 +127,16 @@ game.PlayerEntity = me.Entity.extend({
         }
     },
     
+    checkAbilityKeys: function() {
+        if(me.input.isKeyPressed("skill1")) {
+            //this.speedBurst();
+        }else if(me.input.isKeyPressed("skill2")) {
+            
+        }else if(me.input.isKeyPressed("skill3")) {
+            
+        }
+    },
+        
     loseHealth: function(damage) {
         this.health = this.health - damage;
 

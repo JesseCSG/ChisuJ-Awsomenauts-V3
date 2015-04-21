@@ -5,9 +5,6 @@
 //* Filters and creates protected emails, usernames, and passwords
     $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
     $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
-    
-//* Echoes password
-    echo $password;
 
 //* Creates salt and gives a safety password.
     $salt = "$5$" . "rounds=5000$" . uniqid(mt_rand(), true) . "$";
@@ -17,7 +14,6 @@
     
 //* Sets emails, passwords, and usernames.
     $query = $_SESSION["connection"]->query("INSERT INTO users SET "
-             . "email = '',"
              . "username = '$username',"
              . "password = '$hashedPassword',"
              . "salt = '$salt'," 
@@ -27,7 +23,7 @@
              . "exp3 = 0, "
              . "exp4 = 0 ");
     
-    $SESSION["name"] = $username;
+    $_SESSION["name"] = $username;
     
 //* If $query is true, then send use to index.php.
      if ($query){

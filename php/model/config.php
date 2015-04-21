@@ -14,6 +14,7 @@
     $password = "root";
     $database = "awesomenauts_db";
     
+    
     //If the connection isn'tt set, then use $connection to create a new Database with host, username, password, and database functions.
     if (!isset($_SESSION["connection"])) {
         $connection = new Database($host, $username, $password, $database);

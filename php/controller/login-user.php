@@ -1,4 +1,4 @@
-    <?php
+<?php
 
 //* Links config.php and navigation.php into this php.
     require_once (__DIR__ . "/../model/config.php");
@@ -20,7 +20,7 @@
     $query = $_SESSION["connection"]->query("SELECT * FROM users WHERE BINARY username = '$username'");
 
 //* If $query's number of rows equals 1, then $row will get fecth_array from $query.
-    if ($query->num_rows == 1) {
+    if ($query->num_rows == 0) {
         $row = $query->fetch_array();
 
         //* If the possword equals crypt's password and salt, then allow user to be authenticated and direct user to the index.php.
@@ -37,10 +37,10 @@
             echo json_encode($array);
         //* If the password doesn't equal crypt's password and salt, then echo out 'Login invalid: Invalid username and password'.
         } else {
-            echo "<p> Login Invalid: Invalid username and password. </p.";
+            echo "Login Invalid: Invalid username and password.";
         }
     }
     //* If $query's number of rows doesn't equal 1, then echo out 'Login Unsuccessful: Invalid username and password',
     else {
-        echo "<p> Login Unsuccessful: Invalid username and password. </p>";
+        echo "Login Invalid: Invalid username and password.";
     }

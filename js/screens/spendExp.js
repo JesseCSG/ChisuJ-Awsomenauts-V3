@@ -11,10 +11,10 @@ game.SpendExp = me.ScreenObject.extend({
                 me.input.bindKey(me.input.KEY.F3, "F3");
                 me.input.bindKey(me.input.KEY.F4, "F4");
                 me.input.bindKey(me.input.KEY.F5, "F5");
-                var exp1cost = ((game.data.exp1 + 1) * 5);
-                var exp2cost = ((game.data.exp2 + 2) * 3);
-                var exp3cost = ((game.data.exp3 + 2) * 4);
-                var exp4cost = ((game.data.exp4 + 1) * 8);
+                var exp1cost = ((Number(game.data.exp1) + 1) * 5);
+                var exp2cost = ((Number(game.data.exp2) + 2) * 3);
+                var exp3cost = ((Number(game.data.exp3) + 2) * 4);
+                var exp4cost = ((Number(game.data.exp4) + 1) * 8);
 
                 me.game.world.addChild(new (me.Renderable.extend({
                     init: function() {
