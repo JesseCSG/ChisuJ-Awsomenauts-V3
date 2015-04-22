@@ -33,6 +33,7 @@ game.PlayerEntity = me.Entity.extend({
     setPlayerTimers: function() {
         this.now = new Date().getTime();
         this.lastHit = this.now;
+        this.spear = this.now;
         this.lastAttack = new Date().getTime();
     },
     
@@ -62,7 +63,7 @@ game.PlayerEntity = me.Entity.extend({
         this.dead = this.checkIfDead();
 
         this.checkKeyPressesAndMoves();
-        
+
         this.checkAbilityKeys();
 
         this.setAnimation();
@@ -128,15 +129,23 @@ game.PlayerEntity = me.Entity.extend({
     },
     
     checkAbilityKeys: function() {
-        if(me.input.isKeyPressed("skill1")) {
+        if (me.input.isKeyPressed("skill1")) {
             //this.speedBurst();
-        }else if(me.input.isKeyPressed("skill2")) {
-            
-        }else if(me.input.isKeyPressed("skill3")) {
-            
+        } else if (me.input.isKeyPressed("skill2")) {
+            //this.eatCreep();
+        } else if (me.input.isKeyPressed("skill3")) {
+            this.throwSpear();
         }
     },
-        
+    
+    throwSpear: function() {
+        if(this.lastSpear >= game.data.spearTimer && game.data.ability3 >= 0) {
+            this.lastSpear = this.now;
+            var spear = me.pool.pull("spear", this.pos.x, this.pos.y, {});
+            me.game.world.addChild(spear, 10);
+        }
+    },
+    
     loseHealth: function(damage) {
         this.health = this.health - damage;
 
@@ -196,9 +205,10 @@ game.PlayerEntity = me.Entity.extend({
 
         this.stopMovement(xdif);
 
-        if (this.checkAttack(xdif, ydif)) {            
+        if (this.checkAttack(xdif, ydif)) {
             this.hitCreep(response);
-        };
+        }
+        ;
     },
     
     stopMovement: function(xdif) {
@@ -226,9 +236,9 @@ game.PlayerEntity = me.Entity.extend({
     
     hitCreep: function(response) {
         if (response.b.health <= this.attack) {
-                game.data.gold += 2;
-            }
-            response.b.loseHealth(game.data.playerAttack);
+            game.data.gold += 2;
+        }
+        response.b.loseHealth(game.data.playerAttack);
     }
 
 });
