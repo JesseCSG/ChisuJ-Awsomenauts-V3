@@ -1,4 +1,5 @@
 game.PlayerEntity = me.Entity.extend({
+    
     init: function(x, y, settings) {
         this.setSuper(x, y);
 
@@ -139,9 +140,11 @@ game.PlayerEntity = me.Entity.extend({
     },
     
     throwSpear: function() {
-        if(this.lastSpear >= game.data.spearTimer && game.data.ability3 >= 0) {
+        console.log(this.now + " " + this.lastSpear + " " + game.data.spearTimer + " " + game.data.ability3 + " ");
+        if((this.now - this.lastSpear) >= game.data.spearTimer*1000 && game.data.ability3 > 0) {
+            console.log(spear, "Spear");
             this.lastSpear = this.now;
-            var spear = me.pool.pull("spear", this.pos.x, this.pos.y, {});
+            var spear = me.pool.pull("spear", this.pos.x, this.pos.y, {}, this.facing);
             me.game.world.addChild(spear, 10);
         }
     },

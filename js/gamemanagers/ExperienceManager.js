@@ -20,7 +20,7 @@ game.ExperienceManager = Object.extend({
         } else {
             game.data.exp += 1;
         }
-        this.gameOver = true;
+        this.gameover = true;
         me.save.exp = game.data.exp;
 
         $.ajax({
