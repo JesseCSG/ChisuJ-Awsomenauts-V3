@@ -34,7 +34,7 @@ game.PlayerEntity = me.Entity.extend({
     setPlayerTimers: function() {
         this.now = new Date().getTime();
         this.lastHit = this.now;
-        this.spear = this.now;
+        this.lastSpear = this.now;
         this.lastAttack = new Date().getTime();
     },
     

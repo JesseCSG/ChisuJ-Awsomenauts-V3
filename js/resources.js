@@ -5,6 +5,7 @@ game.resources = [
 	 * {name: "example", type:"image", src: "data/img/example.png"},
 	 */
         {name: "background-tiles", type:"image", src: "data/img/background-tiles.png"},
+        {name: "background", type:"image", src: "data/img/background.png"},
         {name: "meta-tiles", type:"image", src: "data/img/meta-tiles.png"},
         {name: "player", type:"image", src: "data/img/orcSpear.png"},
         {name: "tower", type:"image", src: "data/img/tower_round.svg.png"},
@@ -15,6 +16,7 @@ game.resources = [
         {name: "load-screen", type:"image", src: "data/img/loadpic.png"},
         {name: "new-screen", type:"image", src: "data/img/newpic.png"},
         {name: "spear", type:"image", src: "data/img/spear.png"},
+        {name: "minimap", type:"image", src: "data/img/minimap.png"},
 
 
 
