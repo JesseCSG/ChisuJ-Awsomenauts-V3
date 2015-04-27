@@ -49,6 +49,7 @@ game.EnemyCreep = me.Entity.extend({
 
         return true;
     },
+    
     collideHandeler: function(response) {
         if (response.b.type === "PlayerBase") {
             this.attacking = true;
@@ -85,5 +86,3 @@ game.EnemyCreep = me.Entity.extend({
         }
     }
 });
-
-

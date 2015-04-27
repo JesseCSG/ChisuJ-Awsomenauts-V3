@@ -9,7 +9,7 @@ game.PlayScreen = me.ScreenObject.extend({
                 // Loads levels from Tiled.
                 me.levelDirector.loadLevel("level01");
                 
-                this.resetPlayer(0, 620);
+                this.resetPlayer(0, 10);
                 
                 var gameTimerManager = me.pool.pull("GameTimerManager", 0, 0, {});
                 me.game.world.addChild(gameTimerManager, 0);
@@ -53,5 +53,7 @@ game.PlayScreen = me.ScreenObject.extend({
         resetPlayer: function(x, y) {
             game.data.player = me.pool.pull("player", x, y, {});
                 me.game.world.addChild(game.data.player, 10);
+            game.data.miniPlayer = me.pool.pull("miniplayer", 10, 10, {});
+                me.game.world.addChild(game.data.miniPlayer, 31);
         }
 });
