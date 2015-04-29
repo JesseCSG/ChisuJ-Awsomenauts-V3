@@ -156,3 +156,4 @@ game.SpendGold = Object.extend({
         }
     }
 });
+

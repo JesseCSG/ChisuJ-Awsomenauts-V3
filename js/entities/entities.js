@@ -210,8 +210,8 @@ game.PlayerEntity = me.Entity.extend({
 
         if (this.checkAttack(xdif, ydif)) {
             this.hitCreep(response);
-        }
-        ;
+        };
+        
     },
     
     stopMovement: function(xdif) {

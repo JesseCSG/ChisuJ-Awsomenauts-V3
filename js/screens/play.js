@@ -23,10 +23,14 @@ game.PlayScreen = me.ScreenObject.extend({
                 var spendGold = me.pool.pull("SpendGold", 0, 0, {});
                 me.game.world.addChild(spendGold, 0);
                 
+                var pauseManager = me.pool.pull("PauseManager", 0, 0, {});
+                me.game.world.addChild(pauseManager, 0);
+                
                 game.data.minimap = me.pool.pull("minimap", 10, 10, {});
                 me.game.world.addChild(game.data.minimap, 30);
             
                 me.input.bindKey(me.input.KEY.B, "buy");
+                me.input.bindKey(me.input.KEY.P, "pause");                
                 me.input.bindKey(me.input.KEY.S, "skill1");
                 me.input.bindKey(me.input.KEY.D, "skill2");
                 me.input.bindKey(me.input.KEY.F, "skill3");
@@ -53,7 +57,7 @@ game.PlayScreen = me.ScreenObject.extend({
         resetPlayer: function(x, y) {
             game.data.player = me.pool.pull("player", x, y, {});
                 me.game.world.addChild(game.data.player, 10);
-            game.data.miniPlayer = me.pool.pull("miniplayer", 10, 10, {});
+            game.data.miniPlayer = me.pool.pull("miniplayer", x, y, {});
                 me.game.world.addChild(game.data.miniPlayer, 31);
         }
 });

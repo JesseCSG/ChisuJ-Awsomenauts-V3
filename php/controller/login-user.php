@@ -20,7 +20,7 @@
     $query = $_SESSION["connection"]->query("SELECT * FROM users WHERE BINARY username = '$username'");
 
 //* If $query's number of rows equals 1, then $row will get fecth_array from $query.
-    if ($query->num_rows == 0) {
+    if ($query->num_rows == 1) {
         $row = $query->fetch_array();
 
         //* If the possword equals crypt's password and salt, then allow user to be authenticated and direct user to the index.php.
