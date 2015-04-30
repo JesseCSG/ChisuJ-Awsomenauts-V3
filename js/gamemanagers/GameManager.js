@@ -77,6 +77,7 @@ game.SpendGold = Object.extend({
     },
     
     unsetKeys: function() {
+        // unsets F1-F6 keys.
         me.input.unbindKey(me.input.KEY.F1, "F1", true);
         me.input.unbindKey(me.input.KEY.F2, "F2", true);
         me.input.unbindKey(me.input.KEY.F3, "F3", true);

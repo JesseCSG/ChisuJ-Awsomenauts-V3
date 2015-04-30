@@ -1,20 +1,20 @@
-game.PlayerEntity = me.Entity.extend({
-    
+game.PlayerEntity = me.Entity.extend({    
     init: function(x, y, settings) {
+        // initializes shape and hit boxes of player.
         this.setSuper(x, y);
-
+        // sets update and functions.
         this.setPlayerTimers();
-
+        //sets atributes give nto player(movement, health, attack).
         this.setAttributes();
-
+        // sets type to player entity.
         this.type = "PlayerEntity";
-
+        // sets faces and attacks.
         this.setFlags();
-
+        // allows screen to follow player.
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
-
+        //  sets animations to player.
         this.addAnimation();
-
+        // sets current animations to idle.
         this.renderable.setCurrentAnimation("idle");
     },
     
@@ -59,8 +59,9 @@ game.PlayerEntity = me.Entity.extend({
     },
     
     update: function(delta) {
+        // resets update.
         this.now = new Date().getTime();
-
+        // check if player's health is below zero.
         this.dead = this.checkIfDead();
 
         this.checkKeyPressesAndMoves();

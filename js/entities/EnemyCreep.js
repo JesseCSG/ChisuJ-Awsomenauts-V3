@@ -1,12 +1,14 @@
 game.EnemyCreep = me.Entity.extend({
     init: function(x, y, settings) {
         this._super(me.Entity, "init", [x, y, {
+                // initializes hit box of creep.
                 image: "creep1",
                 width: 32,
                 height: 64,
                 spritewidth: "32",
                 spriteheight: "64",
                 getShape: function() {
+                    // gives creep shape.
                     return (new me.Rect(0, 0, 32, 64)).toPolygon();
                 }
             }]);
@@ -19,34 +21,36 @@ game.EnemyCreep = me.Entity.extend({
         this.lastHit = new Date().getTime();
         this.alwaysUpdate = true;
         this.now = new Date().getTime();
-
+        //sets creep velocity.
         this.body.setVelocity(game.data.creepMoveSpeed, 20);
-
+        // makes the type enemy creep.
         this.type = "EnemyCreep";
-
+        // sets animation for creep.
         this.renderable.addAnimation("walk", [3, 4, 5], 80);
         this.renderable.setCurrentAnimation("walk");
     },
     
     loseHealth: function(damage) {
+        // update health in case of damage.
         this.health = this.health - damage;
     },
     
-    update: function(delta) {
+    update: function(delta) {        
         if(this.health <= 0) {
+            // if health below\equal to zero, remove child.
             me.game.world.removeChild(this);            
         }
-        
+        // resets update.
         this.now = new Date().getTime();
-
+        // makes creep entity move left.
         this.body.vel.x -= this.body.accel.x = me.timer.tick;
-
+        // checks for any collisions.
         me.collision.check(this, true, this.collideHandeler.bind(this), true);
-
+        // update update function.
         this.body.update(delta);
-
+        // updates entity.
         this._super(me.Entity, "update", [delta]);
-
+        // returns true.
         return true;
     },
     

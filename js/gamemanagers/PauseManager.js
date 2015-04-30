@@ -1,5 +1,6 @@
 game.PauseManager = Object.extend({
     init: function(x, y, settings) {
+        //initailizes pausing and updates.
         this.now = new Date().getTime();
         this.lastPause = new Date().getTime();
         this.paused = false;
@@ -8,33 +9,46 @@ game.PauseManager = Object.extend({
     },
     
     update: function() {
+        // resets update function.
         this.now = new Date().getTime();
+        // If "pause" is pressed and it's been already one second, then continue.
         if (me.input.isKeyPressed("pause") && this.now - this.lastPause >= 1000) {
+            // resets this.lastPause
             this.lastPause = this.now;
             if (!this.pausing) {
+                // If pausing is false, go to start Pausing.
                 this.startPausing();
             } else {
+                // If puasing is true, go to stop Pausing.
                 this.stopPausing();
             }
             
-        }        
+        }     
+        // returns true;
         return true;
     },
     
     startPausing: function() {
+        // makes pausing true;
         this.pausing = true;
+        // changes game screen to PLAY.
         me.state.pause(me.state.PLAY);
+        // creates pausing position, and sets pause screen.
         game.data.pausePos = me.game.viewport.localToWorld(0, 0);
         game.data.pausescreen = new me.Sprite(game.data.pausePos.x, game.data.pausePos.y, me.loader.getImage("pause-screen"));
         game.data.pausescreen.updateWhenPaused = true;
+        // sets opacity of screen.
         game.data.pausescreen.setOpacity(0.8);
+        // loads in screen.
         game.data.player.body.setVelocity(0, 0);
         me.game.world.addChild(game.data.pausescreen, 34);
+        // sets pause keys and text.
         this.setKeys();
         this.setPauseText();
     },
     
     setKeys: function() {
+        //
         me.input.bindKey(me.input.KEY.F1, "F1", true);
     },
     

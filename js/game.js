@@ -5,6 +5,7 @@ var game = {
 	// an object where to store game information
 	data : {
 		// score
+                // creates database of all variables below.
 		score : 0,
                 option1: "",
                 option2: "",
@@ -62,6 +63,7 @@ var game = {
 		});
 	}
         
+        // sets game screens to different versions.
         me.state.SPENDEXP = 112;
         me.state.NEW = 113;
         me.state.LOAD = 114;
@@ -81,21 +83,27 @@ var game = {
 
 	// Run on game resources loaded.
 	"loaded" : function () {
+            // loads player entity.
                 me.pool.register("player", game.PlayerEntity, true);
-                
+            // loads base entities.
                 me.pool.register("PlayerBase", game.PlayerBaseEntity);
-                me.pool.register("EnemyBase", game.EnemyBaseEntity);                
+                me.pool.register("EnemyBase", game.EnemyBaseEntity);  
+            // loads creep entities.
                 me.pool.register("EnemyCreep", game.EnemyCreep, true);
-                me.pool.register("PlayerCreep", game.PlayerCreep, true);                
+                me.pool.register("PlayerCreep", game.PlayerCreep, true); 
+            // loads game managers.
                 me.pool.register("GameTimerManager", game.GameTimerManager);
                 me.pool.register("HeroDeathManager", game.HeroDeathManager);
                 me.pool.register("ExperienceManager", game.ExperienceManager);
                 me.pool.register("SpendGold", game.SpendGold);
                 me.pool.register("PauseManager", game.PauseManager);
+            // loads throwable entities.
                 me.pool.register("spear", game.SpearThrow, true);
+            // loads mini map entities.
                 me.pool.register("minimap", game.MiniMap, true);
                 me.pool.register("miniplayer", game.MiniPlayerLocation, true);
 
+            // creats\loads different game screens.
 		me.state.set(me.state.MENU, new game.TitleScreen());
 		me.state.set(me.state.PLAY, new game.PlayScreen());
                 me.state.set(me.state.SPENDEXP, new game.SpendExp());
