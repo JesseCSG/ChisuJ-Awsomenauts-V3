@@ -20,18 +20,18 @@
 	<body>
 		<!-- Canvas placeholder -->
 		<div id="screen"></div>
-
                 <form id="input" method="post">
                     <div class="field">
+                    <!-- Creates space for username input. -->
                         <label for="username">Username</label>
                         <input type="text" name="username" id="username" autocomplete="off">
                     </div>
-                    
+                    <!-- Creates space for password input. -->
                     <div class="password">
                         <label for="password">Password</label>
                         <input type="password" name="password" id="password">
                     </div>
-                    
+                    <!-- Creates buttons for the following. -->
                     <button type="button" id="register">Register</button>
                     <button type="button" id="load">Load</button>
                     <button type="button" id="mainmenu">Main Menu</button>
@@ -48,7 +48,7 @@
 		<!-- Game Scripts -->
 		<script type="text/javascript" src="js/game.js"></script>
 		<script type="text/javascript" src="js/resources.js"></script>
-
+                <!-- Inputs all entities pages for use. -->
 		<script type="text/javascript" src="js/entities/entities.js"></script>
                 <script type="text/javascript" src="js/entities/EnemyBaseEntity.js"></script>
                 <script type="text/javascript" src="js/entities/PlayerBaseEntity.js"></script>
@@ -56,17 +56,18 @@
                 <script type="text/javascript" src="js/entities/PlayerCreep.js"></script>
                 <script type="text/javascript" src="js/entities/SpearThrow.js"></script>
                 <script type="text/javascript" src="js/entities/MiniMap.js"></script>
-                
+                <!-- Inputs all game managers pages for use. -->
                 <script type="text/javascript" src="js/gamemanagers/GameManager.js"></script>
                 <script type="text/javascript" src="js/gamemanagers/GameTimerManager.js"></script>
                 <script type="text/javascript" src="js/gamemanagers/HeroDeathManager.js"></script>
                 <script type="text/javascript" src="js/gamemanagers/ExperienceManager.js"></script>
+                <!-- Inputs all entities entities for use. -->
                 <script type="text/javascript" src="js/entities/SpearThrow.js"></script>
                 <script type="text/javascript" src="js/entities/MiniMap.js"></script>
                 <script type="text/javascript" src="js/entities/MiniPlayerLocation.js"></script>
 
 		<script type="text/javascript" src="js/entities/HUD.js"></script>
-
+                <!-- Inputs screens pages for use. -->
 		<script type="text/javascript" src="js/screens/title.js"></script>
 		<script type="text/javascript" src="js/screens/play.js"></script>
                 <script type="text/javascript" src="js/screens/loadProfile.js"></script>
@@ -101,54 +102,66 @@
 		</script>
                 
                 <script>
+                // If menu is clicked, change screen to MENU.
                 $("#mainmenu").bind("click", function() {
                     me.state.change(me.state.MENU);
                 });
+                // If regesteris clicked, call from php.
                 $("#register").bind("click", function() {
                     $.ajax({
                        type: "POST",
                        url: "php/controller/create-user.php",
                        data: {
+                           // check username and password.
                            username: $("#username").val(),
                            password: $("#password").val()
                        },
                        dataType: "text"
                     })
                     .success(function(response) {
+                        // If allowed, change screen to PLAY.
                         if(response==="true") {
                             me.state.change(me.state.PLAY);
                         }else{
+                        // If not allowed, alert player.
                             alert(response);
                         }
                     })
+                    // I fails, alert player "FAIL".
                     .fail(function(response) {
                         alert("FAIL");
                     });
                 });
+                // If load is clicked, change screen to LOAD.
                 $("#load").bind("click", function() {
                     $.ajax({
+                       // checks data on users/ passwords/
                        type: "POST",
                        url: "php/controller/login-user.php",
                        data: {
+                           // checks password and username.
                            username: $("#username").val(),
                            password: $("#password").val()
                        },
                        dataType: "text"
                     })
                     .success(function(response) {
+                        // If unsuccessful, then alert player.
                         if(response==="Login Invalid: Invalid username and password.") {
                             alert(response);
                         }else{
+                        // If successful, then load exp variables.
                             var data = jQuery.parseJSON(response);
                             game.data.exp = data["exp"];
                             game.data.exp1 = data["exp1"];
                             game.data.exp2 = data["exp2"];
                             game.data.exp3 = data["exp3"];
                             game.data.exp4 = data["exp4"];
-
+                            // change screen to SPENDEXP.
                             me.state.change(me.state.SPENDEXP);
                         }
                     })
+                    // If entirely unsuccessful, then alert player.
                     .fail(function(response) {
                         alert("FAIL");
                     });

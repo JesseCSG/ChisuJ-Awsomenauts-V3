@@ -34,7 +34,8 @@ game.PlayScreen = me.ScreenObject.extend({
                 me.input.bindKey(me.input.KEY.S, "skill1");
                 me.input.bindKey(me.input.KEY.D, "skill2");
                 me.input.bindKey(me.input.KEY.F, "skill3");
-                me.input.bindKey(me.input.KEY.P, "pause"); 
+                // resets pause key.
+                me.input.bindKey(me.input.KEY.V, "pause");
                 //resets movement keys.
                 me.input.bindKey(me.input.KEY.RIGHT, "right");
                 me.input.bindKey(me.input.KEY.LEFT, "left");

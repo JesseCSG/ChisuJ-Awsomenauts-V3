@@ -63,16 +63,16 @@ game.PlayerEntity = me.Entity.extend({
         this.now = new Date().getTime();
         // check if player's health is below zero.
         this.dead = this.checkIfDead();
-
+        // check for key pressings and movement.
         this.checkKeyPressesAndMoves();
-
+        // check ability and keys.
         this.checkAbilityKeys();
-
+        // sets animations and modes for player.
         this.setAnimation();
-
+        // check for any collisions with other entities.
         me.collision.check(this, true, this.collideHandler.bind(this), true);
         this.body.update(delta);
-
+        // update entity. return true.
         this._super(me.Entity, "update", [delta]);
         return true;
     },
@@ -86,18 +86,22 @@ game.PlayerEntity = me.Entity.extend({
     
     checkKeyPressesAndMoves: function() {
         if (me.input.isKeyPressed("right")) {
+            // check for right movement.
             this.moveRight();
 
         } else if (me.input.isKeyPressed("left")) {
+            // check for left movement.
             this.moveLeft();
         } else {
+            // if no movement, no velocity.
             this.body.vel.x = 0;
         }
 
         if (me.input.isKeyPressed("jump")) {
+            // check if jumping.
             this.jump();
         }
-
+        // check if attacking.
         this.attacking = me.input.isKeyPressed("attack");
     },
     
@@ -141,9 +145,9 @@ game.PlayerEntity = me.Entity.extend({
     },
     
     throwSpear: function() {
-        console.log(this.now + " " + this.lastSpear + " " + game.data.spearTimer + " " + game.data.ability3 + " ");
+        console.log(this.now + "this.now" + this.lastSpear + "lastSpear" + game.data.spearTimer + "SpearTimer" + game.data.ability3 + "Ability 3");
         if((this.now - this.lastSpear) >= game.data.spearTimer*1000 && game.data.ability3 > 0) {
-            console.log(spear, "Spear");
+            // creates Spear entity and updates spear.
             this.lastSpear = this.now;
             var spear = me.pool.pull("spear", this.pos.x, this.pos.y, {}, this.facing);
             me.game.world.addChild(spear, 10);
@@ -151,6 +155,7 @@ game.PlayerEntity = me.Entity.extend({
     },
     
     loseHealth: function(damage) {
+        // updates health to any damage.
         this.health = this.health - damage;
 
     },
@@ -178,16 +183,20 @@ game.PlayerEntity = me.Entity.extend({
     
     collideHandler: function(response) {
         if (response.b.type === 'EnemyBaseEntity') {
+            // checks for collision with enemy bases.
             this.collideWithEnemyBase(response);
         } else if (response.b.type === "EnemyCreep") {
+            // checks for collision with enemy creeps.
             this.collideWithEnemyCreep(response);
         }
 
     },
     
     collideWithEnemyBase: function(response) {
+        // checks x + y positions.
         var ydif = this.pos.y - response.b.pos.y;
         var xdif = this.pos.x - response.b.pos.x;
+        // creates smaller hitbox and roof for enemy base.
         if (ydif < -40 && xdif < 70 && xdif > -35) {
             this.body.falling = false;
         } else if (xdif > -35 && this.facing === 'right' && (xdif < 0)) {
@@ -195,8 +204,10 @@ game.PlayerEntity = me.Entity.extend({
         } else if (xdif < 70 && this.facing === 'left' && (xdif > 0)) {
             this.body.vel.x = 0;
         }
+        
         if (this.renderable.isCurrentAnimation("attack") && this.now - this.lastHit >= game.data.playerAttackTimer) {
-            console.log("PlayerAttack: ", game.data.playerAttackTimer);
+            console.log("PlayerAttack: ", game.data.playerAttack);
+            // If player is attacking, then damage to enemy base.
             this.lastHit = this.now;
             response.b.loseHealth(game.data.playerAttack);
 
@@ -204,11 +215,12 @@ game.PlayerEntity = me.Entity.extend({
     },
     
     collideWithEnemyCreep: function(response) {
+        // checks x + y positions.
         var xdif = this.pos.x - response.b.pos.x;
         var ydif = this.pos.y - response.b.pos.y;
-
+        // stops movement of player.
         this.stopMovement(xdif);
-
+        // if attacking, attack enemy creep.
         if (this.checkAttack(xdif, ydif)) {
             this.hitCreep(response);
         };
@@ -218,30 +230,36 @@ game.PlayerEntity = me.Entity.extend({
     stopMovement: function(xdif) {
         if (xdif > 0) {
             if (this.facing === "left") {
+                // if attacking and facing left, stop player.
                 this.body.vel.x = 0;
             }
         } else {
             if (this.facing === "right") {
+                // if attacking and facing right, stop player.
                 this.body.vel.x = 0;
             }
         }
     },
     
     checkAttack: function(xdif, ydif) {
-
         if (this.renderable.isCurrentAnimation("attack") && this.now - this.lastHit >= game.data.playerAttackTimer
                 && (Math.abs(ydif) <= 40) &&
                 (((xdif > 0) && this.facing === "left") || ((xdif < 0) && this.facing === "right"))) {
+            // if attacking, and attack timer true, and facing creep, then update hits.
             this.lastHit = this.now;
+            // return true.
             return true;
         }
+        // If not, return false.
         return false;
     },
     
     hitCreep: function(response) {
         if (response.b.health <= this.attack) {
+            // if kill creep, earn +2 gold.
             game.data.gold += 2;
         }
+        // creep lose health.
         response.b.loseHealth(game.data.playerAttack);
     }
 

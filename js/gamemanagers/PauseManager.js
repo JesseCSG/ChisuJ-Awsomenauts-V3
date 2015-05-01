@@ -48,37 +48,46 @@ game.PauseManager = Object.extend({
     },
     
     setKeys: function() {
-        //
+        // sets key(s) for screen.
         me.input.bindKey(me.input.KEY.F1, "F1", true);
     },
     
     setPauseText: function() {
         game.data.pausetext = new (me.Renderable.extend({
             init: function() {
+                // initializes pause positions and screen text/font.
                 this._super(me.Renderable, 'init', [game.data.pausePos.x, game.data.pausePos.y, 300, 50]);
                 this.font = new me.Font('Times New Roman', 26, 'white');
+                // updates when paused and updates always.
                 this.updateWhenPaused = true;
                 this.alwaysUpdate = true;
             },
             draw: function(renderer) {
+                // creates font for screen.
                 this.font.draw(renderer.getContext(), "Screen Paused", this.pos.x, this.pos.y);
                 this.font.draw(renderer.getContext(), "Press F1 To Resume", this.pos.x, this.pos.y + 50);
 
             }
         }));
+        // adds screen into game.
         me.game.world.addChild(game.data.pausetext, 35);
     },
     
     stopPausing: function() {
+        // no longer pauses. change screen to PLAY.
         this.pausing = false;
         me.state.resume(me.state.PLAY);
+        // resume velocities, remove pause screen.
         game.data.player.body.setVelocity(game.data.playerMoveSpeed, 20);
         me.game.world.removeChild(game.data.pausescreen);
+        // unsets key(s) of screen.
         this.unsetKeys();
+        // removes text of screen.
         me.game.world.removeChild(game.data.pausetext);
     },
     
     unsetKeys: function() {
+        // un-sets key(s) of screen for game.
         me.input.unbindKey(me.input.KEY.F1, "F1", true);
     }
 });
