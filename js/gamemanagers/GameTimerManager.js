@@ -29,13 +29,8 @@ game.GameTimerManager = Object.extend({
                 this.lastCreep = this.now;
                 var creepe = me.pool.pull("EnemyCreep", 3360, 0, {});
                 me.game.world.addChild(creepe, 10);
-            // returns true.
-            return true;
-        } else if (Math.round(this.now / 1000) % 10 === 0 && (this.now - this.lastCreep >= 1000)) {
-            //If been mmre than alloted time, then spawn player creep.
-                this.lastCreep = this.now;
-                var creepe = me.pool.pull("EnemyCreep", 3360, 0, {});
-                me.game.world.addChild(creepe, 10);
+                var creepp = me.pool.pull("PlayerCreep", 10, 0, {});
+                me.game.world.addChild(creepp, 10);
             // returns true.
             return true;
         }

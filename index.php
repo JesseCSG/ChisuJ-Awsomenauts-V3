@@ -61,6 +61,8 @@
                 <script type="text/javascript" src="js/gamemanagers/GameTimerManager.js"></script>
                 <script type="text/javascript" src="js/gamemanagers/HeroDeathManager.js"></script>
                 <script type="text/javascript" src="js/gamemanagers/ExperienceManager.js"></script>
+                <script type="text/javascript" src="js/gamemanagers/PauseManager.js"></script>
+
                 <!-- Inputs all entities entities for use. -->
                 <script type="text/javascript" src="js/entities/SpearThrow.js"></script>
                 <script type="text/javascript" src="js/entities/MiniMap.js"></script>

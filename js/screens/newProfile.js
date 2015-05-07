@@ -19,7 +19,7 @@ game.NewProfile = me.ScreenObject.extend({
                 me.game.world.addChild(new (me.Renderable.extend({
                     init: function() {
                         this._super(me.Renderable, 'init', [10, 10, 300, 50]);
-                        this.font = new me.Font('Times New Roman', 26, 'white');
+                        this.font = new me.Font('Times New Roman', 26, 'black');
                     },
                     
                     draw: function(renderer) {
